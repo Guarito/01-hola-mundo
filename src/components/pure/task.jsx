@@ -1,13 +1,20 @@
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 import { Task } from "../../models/tasks.class";
 
 const TaskComponent = ({ task }) => {
+    const { name, description, level, completed } = task;
+
+    useEffect(() => {
+        console.log("Tarea creada");
+        return () => {};
+    }, [task]);
     return (
         <div>
-            <h2>Name: {task.name}</h2>
-            <p>Description: {task.description}</p>
-            <h4>Level: {task.level}</h4>
-            <h4>{task.completed ? "COMPLETED" : "PENDING"}</h4>
+            <h2>Name: {name}</h2>
+            <p>Description: {description}</p>
+            <h4>Level: {level}</h4>
+            <h4>{completed ? "COMPLETED" : "PENDING"}</h4>
         </div>
     );
 };
