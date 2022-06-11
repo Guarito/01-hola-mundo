@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { Task } from "../../models/tasks.class";
+import "../../styles/task.scss";
 
 const TaskComponent = ({ task }) => {
     const { name, description, level, completed } = task;
@@ -11,7 +12,7 @@ const TaskComponent = ({ task }) => {
     }, [task]);
     return (
         <div>
-            <h2>Name: {name}</h2>
+            <h2 className="task-name">Name: {name}</h2>
             <p>Description: {description}</p>
             <h4>Level: {level}</h4>
             <h4>{completed ? "COMPLETED" : "PENDING"}</h4>
