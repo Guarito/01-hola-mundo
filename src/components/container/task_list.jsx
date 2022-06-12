@@ -31,7 +31,7 @@ const TaskList = (props) => {
         console.log("TODO: Cambiar estado de una tarea");
     };
     return (
-        <div>
+        <div className="container-sm bg-secondary">
             <h1>Your tasks:</h1>
             {/* TODO: crear map para iterar y renderizar lista de tareas */}
             <TaskComponent task={defaultTask} />
