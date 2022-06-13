@@ -5,7 +5,7 @@ import { Task } from "../../models/tasks.class";
 import "../../styles/task.scss";
 import TaskLevelBadge from "./helpers/taskLevelBadge";
 
-const TaskComponent = ({ task, changeStatus }) => {
+const TaskComponent = ({ task, changeStatus, deleteTask }) => {
     const { name, description, level, completed } = task;
 
     useEffect(() => {
@@ -41,6 +41,7 @@ const TaskComponent = ({ task, changeStatus }) => {
                     <i
                         className="bi-trash pointer"
                         style={{ color: "tomato" }}
+                        onClick={() => deleteTask(task)}
                     ></i>
                 </span>
             </th>
@@ -51,6 +52,7 @@ const TaskComponent = ({ task, changeStatus }) => {
 TaskComponent.propTypes = {
     task: PropTypes.instanceOf(Task).isRequired,
     changeStatus: PropTypes.func.isRequired,
+    deleteTask: PropTypes.func.isRequired,
 };
 
 export default TaskComponent;

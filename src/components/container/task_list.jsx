@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import TaskComponent from "../pure/task";
 import { LEVELS } from "../../models/levels.enun";
 import { Task } from "../../models/tasks.class";
+import TaskForm from "../pure/forms/taskForm";
 
 const TaskList = (props) => {
     const defaultTask = new Task(
@@ -17,8 +18,18 @@ const TaskList = (props) => {
         true,
         LEVELS.HIGH
     );
+    const defaultTask3 = new Task(
+        "Example title 3",
+        "Default description 3",
+        true,
+        LEVELS.HIGH
+    );
     //State del componente para manejar el listado de tareas
-    const [tasks, setTasks] = useState([defaultTask, defaultTask2]);
+    const [tasks, setTasks] = useState([
+        defaultTask,
+        defaultTask2,
+        defaultTask3,
+    ]);
 
     const [loading, setLoading] = useState(true);
 
@@ -31,6 +42,17 @@ const TaskList = (props) => {
             console.log("TaskList sera desmontado");
         };
     }, [tasks]);
+
+    /**
+     * Funcion para agregar nueva tarea
+     */
+    const addTask = () => {
+        setTasks([
+            ...tasks,
+            new Task("New task", "new task description", false, LEVELS.NORMAL),
+        ]);
+    };
+
     /**
      * Funcion para cambiar el status de una tarea en especifico
      */
@@ -41,11 +63,23 @@ const TaskList = (props) => {
 
         setTasks(tempTasks);
     };
+
+    /**
+     * Funcion para eliminar una tarea
+     */
+    const deleteTask = (task) => {
+        const indexToDelete = tasks.indexOf(task);
+        const tempTasks = tasks.filter((nt, index) => index !== indexToDelete);
+        // console.log(tempTasks);
+        setTasks(tempTasks);
+    };
     return (
         <div className="col-12">
             <div className="card">
                 <div className="card-header p-3 text-dark">
                     <h5 className="display-6">Your tasks:</h5>
+
+                    <TaskForm addTask={addTask} />
                 </div>
                 {/** Card body */}
                 <div
@@ -70,6 +104,7 @@ const TaskList = (props) => {
                                     key={index}
                                     task={task}
                                     changeStatus={changeTaskStatus}
+                                    deleteTask={deleteTask}
                                 />
                             ))}
                         </tbody>
