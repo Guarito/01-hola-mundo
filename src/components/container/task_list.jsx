@@ -12,24 +12,8 @@ const TaskList = (props) => {
         LEVELS.NORMAL
     );
 
-    const defaultTask2 = new Task(
-        "Example title 2",
-        "Default description 2",
-        true,
-        LEVELS.HIGH
-    );
-    const defaultTask3 = new Task(
-        "Example title 3",
-        "Default description 3",
-        true,
-        LEVELS.HIGH
-    );
     //State del componente para manejar el listado de tareas
-    const [tasks, setTasks] = useState([
-        defaultTask,
-        defaultTask2,
-        defaultTask3,
-    ]);
+    const [tasks, setTasks] = useState([defaultTask]);
 
     const [loading, setLoading] = useState(true);
 
@@ -46,11 +30,10 @@ const TaskList = (props) => {
     /**
      * Funcion para agregar nueva tarea
      */
-    const addTask = () => {
-        setTasks([
-            ...tasks,
-            new Task("New task", "new task description", false, LEVELS.NORMAL),
-        ]);
+    const addTask = (values) => {
+        const { title, description, completed, level } = values;
+        console.log(title, description, completed, level);
+        setTasks([...tasks, new Task(title, description, completed, level)]);
     };
 
     /**

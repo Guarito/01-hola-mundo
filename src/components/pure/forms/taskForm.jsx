@@ -1,37 +1,80 @@
 import { useState } from "react";
 
-
-
 const TaskForm = ({ addTask }) => {
+    const initialTask = {
+        title: "",
+        description: "",
+        completed: false,
+        level: "",
+    };
+    const [formData, setFormData] = useState(initialTask);
+
+    const resetForm = () => setFormData(initialTask);
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((formData) => {
+            return {
+                ...formData,
+                [name]: value,
+            };
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        addTask(formData);
+        resetForm();
+    };
     return (
         <form>
             <div className="mb-3">
                 <label htmlFor="title" className="form-label">
                     Title
                 </label>
-                <input type="text" className="form-control" id="task" />
+                <input
+                    type="text"
+                    className="form-control"
+                    name="title"
+                    id="title"
+                    value={formData.title}
+                    onChange={handleChange}
+                />
             </div>
             <div className="mb-3">
                 <label htmlFor="description" className="form-label">
                     Description
                 </label>
-                <input type="text" className="form-control" id="description" />
+                <input
+                    type="text"
+                    className="form-control"
+                    name="description"
+                    id="description"
+                    value={formData.description}
+                    onChange={handleChange}
+                />
             </div>
             <div className="mb-3">
                 <label htmlFor="level">Level priority</label>
                 <select
                     className="form-select"
-                    aria-label="Default select example"
+                    name="level"
                     id="level"
-                    placeholder="Open this select menu"
+                    value={formData.level}
+                    onChange={handleChange}
+                    // placeholder="Open this select menu"
                 >
-                    <option value="normal">Normal</option>
-                    <option value="high">High</option>
-                    <option value="blocking">Blocking</option>
+                    <option value="">--Choose priority level--</option>
+                    <option value="Normal">Normal</option>
+                    <option value="High">High</option>
+                    <option value="Blocking">Blocking</option>
                 </select>
             </div>
 
-            <button type="submit" className="btn btn-primary" onClick={addTask}>
+            <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={handleSubmit}
+            >
                 Add
             </button>
         </form>
