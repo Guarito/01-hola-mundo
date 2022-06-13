@@ -17,7 +17,7 @@ const TaskList = (props) => {
 
     //Control ciclo de vida del componente
     useEffect(() => {
-        console.log("Modificacion de listado de tareas");
+        console.log("Montura de listado de tareas");
 
         setLoading(false);
         return () => {

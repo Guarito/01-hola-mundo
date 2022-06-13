@@ -1,15 +1,17 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
+
 import { Task } from "../../models/tasks.class";
 import "../../styles/task.scss";
+import TaskLevelBadge from "./helpers/taskLevelBadge";
 
 const TaskComponent = ({ task }) => {
     const { name, description, level, completed } = task;
 
     useEffect(() => {
         console.log("Tarea creada");
-        return () => {};
     }, [task]);
+
     return (
         <tr>
             <th>
@@ -19,22 +21,19 @@ const TaskComponent = ({ task }) => {
                 <span>{description}</span>
             </th>
             <th>
-                <span>{level}</span>
+                <TaskLevelBadge level={level} />
             </th>
             <th>
                 <span>
                     {!completed ? (
-                        <i
-                            className="bi bi-square"
-                            style={{ color: "gray" }}
-                        ></i>
+                        <i className="bi-square" style={{ color: "gray" }}></i>
                     ) : (
                         <i
-                            className="bi bi-check2-square"
+                            className="bi-check2-square"
                             style={{ color: "green" }}
                         ></i>
                     )}
-                    <i className="bi bi-trash" style={{ color: "red" }}></i>
+                    <i className="bi-trash" style={{ color: "tomato" }}></i>
                 </span>
             </th>
         </tr>
