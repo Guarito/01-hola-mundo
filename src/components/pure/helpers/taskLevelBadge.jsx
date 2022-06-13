@@ -9,7 +9,7 @@ const TaskLevelBadge = ({ level }) => {
                 </h6>
             );
 
-        case LEVELS.PRIORITY:
+        case LEVELS.HIGH:
             return (
                 <h6 className="mb-0">
                     <span className="badge text-bg-warning">{level}</span>

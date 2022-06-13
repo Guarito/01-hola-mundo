@@ -10,8 +10,15 @@ const TaskList = (props) => {
         false,
         LEVELS.NORMAL
     );
+
+    const defaultTask2 = new Task(
+        "Example title 2",
+        "Default description 2",
+        true,
+        LEVELS.HIGH
+    );
     //State del componente para manejar el listado de tareas
-    const [tasks, setTasks] = useState([defaultTask]);
+    const [tasks, setTasks] = useState([defaultTask, defaultTask2]);
 
     const [loading, setLoading] = useState(true);
 
@@ -53,7 +60,10 @@ const TaskList = (props) => {
                         </thead>
                         <tbody>
                             {/* TODO: crear map para iterar y renderizar lista de tareas */}
-                            <TaskComponent task={defaultTask} />
+                            {/* <TaskComponent task={defaultTask} /> */}
+                            {tasks.map((task, index) => (
+                                <TaskComponent key={index} task={task} />
+                            ))}
                         </tbody>
                     </table>
                 </div>
