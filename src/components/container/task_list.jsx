@@ -34,8 +34,12 @@ const TaskList = (props) => {
     /**
      * Funcion para cambiar el status de una tarea en especifico
      */
-    const changeTaskStatus = (id) => {
-        console.log("TODO: Cambiar estado de una tarea");
+    const changeTaskStatus = (task) => {
+        const index = tasks.indexOf(task);
+        const tempTasks = [...tasks];
+        tempTasks[index].completed = !tempTasks[index].completed;
+
+        setTasks(tempTasks);
     };
     return (
         <div className="col-12">
@@ -62,7 +66,11 @@ const TaskList = (props) => {
                             {/* TODO: crear map para iterar y renderizar lista de tareas */}
                             {/* <TaskComponent task={defaultTask} /> */}
                             {tasks.map((task, index) => (
-                                <TaskComponent key={index} task={task} />
+                                <TaskComponent
+                                    key={index}
+                                    task={task}
+                                    changeStatus={changeTaskStatus}
+                                />
                             ))}
                         </tbody>
                     </table>
