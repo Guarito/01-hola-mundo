@@ -31,10 +31,33 @@ const TaskList = (props) => {
         console.log("TODO: Cambiar estado de una tarea");
     };
     return (
-        <div className="container-sm bg-secondary">
-            <h1>Your tasks:</h1>
-            {/* TODO: crear map para iterar y renderizar lista de tareas */}
-            <TaskComponent task={defaultTask} />
+        <div className="col-12">
+            <div className="card">
+                <div className="card-header p-3 text-dark">
+                    <h5 className="display-6">Your tasks:</h5>
+                </div>
+                {/** Card body */}
+                <div
+                    className="card-body"
+                    style={{ position: "relative", height: "400px" }}
+                    data-mdb-perfect-perfect-scrollbar="true"
+                >
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Priority</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {/* TODO: crear map para iterar y renderizar lista de tareas */}
+                            <TaskComponent task={defaultTask} />
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     );
 };

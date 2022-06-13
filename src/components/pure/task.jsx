@@ -11,12 +11,33 @@ const TaskComponent = ({ task }) => {
         return () => {};
     }, [task]);
     return (
-        <div>
-            <h2 className="task-name">Name: {name}</h2>
-            <p>Description: {description}</p>
-            <h4>Level: {level}</h4>
-            <h4>{completed ? "COMPLETED" : "PENDING"}</h4>
-        </div>
+        <tr>
+            <th>
+                <span>{name}</span>
+            </th>
+            <th>
+                <span>{description}</span>
+            </th>
+            <th>
+                <span>{level}</span>
+            </th>
+            <th>
+                <span>
+                    {!completed ? (
+                        <i
+                            className="bi bi-square"
+                            style={{ color: "gray" }}
+                        ></i>
+                    ) : (
+                        <i
+                            className="bi bi-check2-square"
+                            style={{ color: "green" }}
+                        ></i>
+                    )}
+                    <i className="bi bi-trash" style={{ color: "red" }}></i>
+                </span>
+            </th>
+        </tr>
     );
 };
 
