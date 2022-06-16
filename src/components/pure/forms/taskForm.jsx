@@ -1,12 +1,12 @@
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
+import { LEVELS } from "../../../models/levels.enun";
 
 const TaskForm = ({ addTask }) => {
     const initialTask = {
         title: "",
         description: "",
-        completed: false,
-        level: "",
+        level: LEVELS.NORMAL,
     };
     const [formData, setFormData] = useState(initialTask);
 
@@ -32,23 +32,20 @@ const TaskForm = ({ addTask }) => {
     return (
         <form>
             <div className="mb-3">
-                <label htmlFor="title" className="form-label">
-                    Title
-                </label>
                 <input
+                    placeholder="Task title"
                     type="text"
                     className="form-control"
                     name="title"
                     id="title"
                     value={formData.title}
                     onChange={handleChange}
+                    autoFocus
                 />
             </div>
             <div className="mb-3">
-                <label htmlFor="description" className="form-label">
-                    Description
-                </label>
                 <input
+                    placeholder="Description"
                     type="text"
                     className="form-control"
                     name="description"
@@ -67,10 +64,9 @@ const TaskForm = ({ addTask }) => {
                     onChange={handleChange}
                     // placeholder="Open this select menu"
                 >
-                    <option value="">--Choose priority level--</option>
-                    <option value="Normal">Normal</option>
-                    <option value="High">High</option>
-                    <option value="Blocking">Blocking</option>
+                    <option value={LEVELS.NORMAL}>Normal</option>
+                    <option value={LEVELS.HIGH}>High</option>
+                    <option value={LEVELS.BLOCKING}>Blocking</option>
                 </select>
             </div>
 
@@ -78,6 +74,9 @@ const TaskForm = ({ addTask }) => {
                 type="submit"
                 className="btn btn-primary"
                 onClick={handleSubmit}
+                disabled={
+                    !formData.title || !formData.description || !formData.level
+                }
             >
                 Add
             </button>

@@ -29,19 +29,19 @@ const TaskComponent = ({ task, changeStatus, deleteTask }) => {
                         <i
                             className="bi-square pointer"
                             style={{ color: "gray" }}
-                            onClick={() => changeStatus(task)}
+                            onClick={() => changeStatus(id)}
                         ></i>
                     ) : (
                         <i
                             className="bi-check2-square pointer"
                             style={{ color: "green" }}
-                            onClick={() => changeStatus(task)}
+                            onClick={() => changeStatus(id)}
                         ></i>
                     )}
                     <i
                         className="bi-trash pointer"
                         style={{ color: "tomato" }}
-                        onClick={() => deleteTask(task)}
+                        onClick={() => deleteTask(id)}
                     ></i>
                 </span>
             </th>

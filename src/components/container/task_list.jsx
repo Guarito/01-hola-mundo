@@ -38,9 +38,9 @@ const TaskList = (props) => {
     /**
      * Funcion para cambiar el status de una tarea en especifico
      */
-    const changeTaskStatus = (task) => {
+    const changeTaskStatus = (id) => {
         const tempTasks = [...tasks];
-        const taskToChange = tempTasks.find((item) => item.id === task.id);
+        const taskToChange = tempTasks.find((item) => item.id === id);
         taskToChange.completed = !taskToChange.completed;
 
         setTasks(tempTasks);
@@ -49,9 +49,9 @@ const TaskList = (props) => {
     /**
      * Funcion para eliminar una tarea
      */
-    const deleteTask = (task) => {
+    const deleteTask = (id) => {
         const tempTasks = tasks.filter(
-            (taskToPreserve) => taskToPreserve.id !== task.id
+            (taskToPreserve) => taskToPreserve.id !== id
         );
 
         setTasks(tempTasks);
