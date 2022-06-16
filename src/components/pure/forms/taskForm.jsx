@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 
 const TaskForm = ({ addTask }) => {
@@ -22,7 +23,10 @@ const TaskForm = ({ addTask }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addTask(formData);
+        addTask({
+            ...formData,
+            id: uuidv4(),
+        });
         resetForm();
     };
     return (

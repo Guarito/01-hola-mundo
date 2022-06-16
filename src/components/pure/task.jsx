@@ -6,7 +6,7 @@ import "../../styles/task.scss";
 import TaskLevelBadge from "./helpers/taskLevelBadge";
 
 const TaskComponent = ({ task, changeStatus, deleteTask }) => {
-    const { name, description, level, completed } = task;
+    const { id, name, description, level, completed } = task;
 
     useEffect(() => {
         console.log("Tarea creada");

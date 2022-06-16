@@ -5,44 +5,43 @@ import { Task } from "../../models/tasks.class";
 import TaskForm from "../pure/forms/taskForm";
 
 const TaskList = (props) => {
-    const defaultTask = new Task(
-        "Example title",
-        "Default description",
-        false,
-        LEVELS.NORMAL
-    );
+    // const defaultTask = new Task(
+    //     "Example title",
+    //     "Default description",
+    //     false,
+    //     LEVELS.NORMAL
+    // );
 
     //State del componente para manejar el listado de tareas
-    const [tasks, setTasks] = useState([defaultTask]);
-
+    const [tasks, setTasks] = useState([]);
     const [loading, setLoading] = useState(true);
 
     //Control ciclo de vida del componente
     useEffect(() => {
-        console.log("Montura de listado de tareas");
+        // console.log("Montura de listado de tareas");
 
         setLoading(false);
-        return () => {
-            console.log("TaskList sera desmontado");
-        };
     }, [tasks]);
 
     /**
      * Funcion para agregar nueva tarea
      */
     const addTask = (values) => {
-        const { title, description, completed, level } = values;
-        console.log(title, description, completed, level);
-        setTasks([...tasks, new Task(title, description, completed, level)]);
+        const { id, title, description, completed, level } = values;
+
+        setTasks([
+            ...tasks,
+            new Task(id, title, description, completed, level),
+        ]);
     };
 
     /**
      * Funcion para cambiar el status de una tarea en especifico
      */
     const changeTaskStatus = (task) => {
-        const index = tasks.indexOf(task);
         const tempTasks = [...tasks];
-        tempTasks[index].completed = !tempTasks[index].completed;
+        const taskToChange = tempTasks.find((item) => item.id === task.id);
+        taskToChange.completed = !taskToChange.completed;
 
         setTasks(tempTasks);
     };
@@ -51,9 +50,10 @@ const TaskList = (props) => {
      * Funcion para eliminar una tarea
      */
     const deleteTask = (task) => {
-        const indexToDelete = tasks.indexOf(task);
-        const tempTasks = tasks.filter((nt, index) => index !== indexToDelete);
-        // console.log(tempTasks);
+        const tempTasks = tasks.filter(
+            (taskToPreserve) => taskToPreserve.id !== task.id
+        );
+
         setTasks(tempTasks);
     };
     return (
@@ -82,9 +82,9 @@ const TaskList = (props) => {
                         <tbody>
                             {/* TODO: crear map para iterar y renderizar lista de tareas */}
                             {/* <TaskComponent task={defaultTask} /> */}
-                            {tasks.map((task, index) => (
+                            {tasks.map((task) => (
                                 <TaskComponent
-                                    key={index}
+                                    key={task.id}
                                     task={task}
                                     changeStatus={changeTaskStatus}
                                     deleteTask={deleteTask}
