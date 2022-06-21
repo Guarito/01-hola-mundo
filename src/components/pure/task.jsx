@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 import { Task } from "../../models/tasks.class";
 import "../../styles/task.scss";
-import TaskLevelBadge from "./helpers/taskLevelBadge";
+import TaskLevelBadge from "./features/taskLevelBadge";
 
 const TaskComponent = ({ task, changeStatus, deleteTask }) => {
     const { id, name, description, level, completed } = task;

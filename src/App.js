@@ -1,5 +1,5 @@
 import "./App.scss";
-import TaskList from "./components/container/task_list";
+import TaskList from "./components/container/tasks";
 
 function App() {
     return (

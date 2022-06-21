@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import TaskComponent from "../pure/task";
-import { LEVELS } from "../../models/levels.enun";
 import { Task } from "../../models/tasks.class";
 import TaskForm from "../pure/forms/taskForm";
+import TasksTable from "./tasksTable";
+import NoTasks from "../pure/noTasks";
 
 const TaskList = (props) => {
     // const defaultTask = new Task(
@@ -70,28 +70,15 @@ const TaskList = (props) => {
                     style={{ position: "relative", height: "400px" }}
                     data-mdb-perfect-perfect-scrollbar="true"
                 >
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Title</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">Priority</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {/* TODO: crear map para iterar y renderizar lista de tareas */}
-                            {/* <TaskComponent task={defaultTask} /> */}
-                            {tasks.map((task) => (
-                                <TaskComponent
-                                    key={task.id}
-                                    task={task}
-                                    changeStatus={changeTaskStatus}
-                                    deleteTask={deleteTask}
-                                />
-                            ))}
-                        </tbody>
-                    </table>
+                    {tasks.length > 0 ? (
+                        <TasksTable
+                            tasks={tasks}
+                            changeTaskStatus={changeTaskStatus}
+                            deleteTask={deleteTask}
+                        />
+                    ) : (
+                        <NoTasks />
+                    )}
                 </div>
             </div>
         </div>
