@@ -8,12 +8,10 @@ import TaskLevelBadge from "./features/taskLevelBadge";
 const TaskComponent = ({ task, changeStatus, deleteTask }) => {
     const { id, name, description, level, completed } = task;
 
-    useEffect(() => {
-        console.log("Tarea creada");
-    }, [task]);
+    useEffect(() => {}, [task]);
 
     return (
-        <tr>
+        <tr className={completed ? "completed" : null}>
             <th>
                 <span>{name}</span>
             </th>

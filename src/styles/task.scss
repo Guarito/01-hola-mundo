@@ -1,7 +1,9 @@
-.task-name {
-    font-weight: bold;
-    color: cadetblue;
-}
 .pointer {
     cursor: pointer;
+}
+
+.completed {
+    font-style: oblique;
+    color: lightslategray;
+    background-color: #eeeeee;
 }
