@@ -17,7 +17,7 @@ export const MyTextInput = ({ label, ...props }) => {
                 {...props}
             />
             {meta.touched && meta.error ? (
-                <div className="form-text" id={`${props.name}HelpBlock`}>
+                <div className="form-text error" id={`${props.name}HelpBlock`}>
                     {meta.error}
                 </div>
             ) : null}

@@ -8,6 +8,10 @@ let validationSchema = yup.object().shape({
     lastName: yup.string().required("Required").max(12),
     email: yup.string().email().required("Required"),
     password: yup.string().required("Required").min(6).max(20),
+    confirmPassword: yup
+        .string()
+        .required("Confirm your password")
+        .oneOf([yup.ref("password")], "Password do not match"),
 });
 
 const RegisterForm = () => {
@@ -56,6 +60,12 @@ const RegisterForm = () => {
                         name="password"
                         type="password"
                         placeholder="Password"
+                    />
+                    <MyTextInput
+                        label="Confirm Password"
+                        name="confirmPassword"
+                        type="password"
+                        placeholder="Confirm password"
                     />
                     <button className="btn btn-outline-dark" type="submit">
                         Submit
