@@ -1,9 +1,14 @@
 import { v4 as uuidv4 } from "uuid";
-import { useState } from "react";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
 import { MyTextInput, MySelect } from "./customFields";
 import { LEVELS } from "../../../models/levels.enun";
+
+const initialTask = {
+    title: "",
+    description: "",
+    level: LEVELS.NORMAL,
+};
 
 const validationSchema = yup.object().shape({
     title: yup.string().required().max(20),
@@ -15,12 +20,6 @@ const validationSchema = yup.object().shape({
 });
 
 const TaskForm = ({ addTask }) => {
-    const initialTask = {
-        title: "",
-        description: "",
-        level: LEVELS.NORMAL,
-    };
-
     return (
         <>
             <h1>Add task</h1>
