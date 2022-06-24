@@ -47,9 +47,11 @@ export const MyCheckbox = ({ children, ...props }) => {
 export const MySelect = ({ label, ...props }) => {
     const [field, meta] = useField(props);
     return (
-        <div>
-            <label htmlFor={props.id || props.name}>{label}</label>
-            <select {...field} {...props} />
+        <div className="mb-3">
+            <label className="label-form" htmlFor={props.id || props.name}>
+                {label}
+            </label>
+            <select className="form-select" {...field} {...props} />
             {meta.touched && meta.error ? (
                 <div className="error">{meta.error}</div>
             ) : null}

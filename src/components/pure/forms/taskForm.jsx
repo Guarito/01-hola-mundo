@@ -1,6 +1,18 @@
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
+import { Formik, Form } from "formik";
+import * as yup from "yup";
+import { MyTextInput, MySelect } from "./customFields";
 import { LEVELS } from "../../../models/levels.enun";
+
+const validationSchema = yup.object().shape({
+    title: yup.string().required().max(20),
+    description: yup.string().required(),
+    level: yup
+        .string()
+        .required()
+        .oneOf([LEVELS.NORMAL, LEVELS.HIGH, LEVELS.BLOCKING]),
+});
 
 const TaskForm = ({ addTask }) => {
     const initialTask = {
@@ -8,79 +20,47 @@ const TaskForm = ({ addTask }) => {
         description: "",
         level: LEVELS.NORMAL,
     };
-    const [formData, setFormData] = useState(initialTask);
 
-    const resetForm = () => setFormData(initialTask);
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((formData) => {
-            return {
-                ...formData,
-                [name]: value,
-            };
-        });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        addTask({
-            ...formData,
-            id: uuidv4(),
-        });
-        resetForm();
-    };
     return (
-        <form>
-            <div className="mb-3">
-                <input
-                    placeholder="Task title"
-                    type="text"
-                    className="form-control"
-                    name="title"
-                    id="title"
-                    value={formData.title}
-                    onChange={handleChange}
-                    autoFocus
-                />
-            </div>
-            <div className="mb-3">
-                <input
-                    placeholder="Description"
-                    type="text"
-                    className="form-control"
-                    name="description"
-                    id="description"
-                    value={formData.description}
-                    onChange={handleChange}
-                />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="level">Level priority</label>
-                <select
-                    className="form-select"
-                    name="level"
-                    id="level"
-                    value={formData.level}
-                    onChange={handleChange}
-                    // placeholder="Open this select menu"
-                >
-                    <option value={LEVELS.NORMAL}>Normal</option>
-                    <option value={LEVELS.HIGH}>High</option>
-                    <option value={LEVELS.BLOCKING}>Blocking</option>
-                </select>
-            </div>
-
-            <button
-                type="submit"
-                className="btn btn-primary"
-                onClick={handleSubmit}
-                disabled={
-                    !formData.title || !formData.description || !formData.level
-                }
+        <>
+            <h1>Add task</h1>
+            <Formik
+                initialValues={initialTask}
+                validationSchema={validationSchema}
+                onSubmit={(values, { setSubmitting }) => {
+                    setTimeout(() => {
+                        addTask({
+                            ...values,
+                            id: uuidv4(),
+                        });
+                        setSubmitting(false);
+                    }, 400);
+                }}
             >
-                Add
-            </button>
-        </form>
+                <Form className="form">
+                    <MyTextInput
+                        label="Title"
+                        name="title"
+                        type="text"
+                        placeholder="Task title"
+                    />
+                    <MyTextInput
+                        label="Description"
+                        name="description"
+                        type="text"
+                        placeholder="Task description"
+                    />
+                    <MySelect label="Priority level" name="level">
+                        <option value={LEVELS.NORMAL}>Normal</option>
+                        <option value={LEVELS.HIGH}>High</option>
+                        <option value={LEVELS.BLOCKING}>Blocking</option>
+                    </MySelect>
+                    <button type="submit" className="btn btn-primary">
+                        Add
+                    </button>
+                </Form>
+            </Formik>
+        </>
     );
 };
 

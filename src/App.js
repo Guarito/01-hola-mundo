@@ -6,7 +6,7 @@ function App() {
     return (
         <div className="App">
             <main className="App-main">
-                {/* <TaskList /> */}
+                <TaskList />
                 <RegisterForm />
             </main>
         </div>
