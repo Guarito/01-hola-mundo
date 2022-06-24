@@ -2,6 +2,8 @@ import React from "react";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
 import { MyTextInput } from "./customFields";
+import { User } from "../../../models/user.class";
+import { ROLES } from "../../../models/roles.enum";
 
 let validationSchema = yup.object().shape({
     firstName: yup.string().required("Required").max(12),
@@ -12,12 +14,10 @@ let validationSchema = yup.object().shape({
         .string()
         .required("Confirm your password")
         .oneOf([yup.ref("password")], "Password do not match"),
+    role: yup.string().oneOf([ROLES.USER, ROLES.ADMIN]),
 });
 
 const RegisterForm = () => {
-    // Pass the useFormik() hook initial form values and a submit function that will
-    // be called when the form is submitted
-
     return (
         <>
             <h1>Register</h1>
@@ -34,6 +34,8 @@ const RegisterForm = () => {
                         alert(JSON.stringify(values, null, 2));
                         setSubmitting(false);
                     }, 400);
+                    const { firstName, lastName, email, password } = values;
+                    let user = new User(firstName, lastName, email, password);
                 }}
             >
                 <Form className="form">
