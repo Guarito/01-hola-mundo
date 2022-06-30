@@ -3,6 +3,7 @@ import "./App.scss";
 
 import RegisterForm from "./components/pure/forms/registerForm";
 import NotFoundPage from "./pages/404/NotFoundPage";
+import LoginPage from "./pages/auth/LoginPage";
 import HomePage from "./pages/home/HomePage";
 import TaskDetailsPage from "./pages/tasks/TaskDetailsPage";
 import TasksPage from "./pages/tasks/TasksPage";
@@ -20,8 +21,9 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/tasks" element={<TasksPage />} />
-                <Route path="/tasks/:id" element={<TaskDetailsPage />} />
-                <Route path="/api/register" element={<RegisterForm />} />
+                <Route path="/tasks/:taskId" element={<TaskDetailsPage />} />
+                <Route path="/auth/login" element={<LoginPage />} />
+                <Route path="/auth/register" element={<RegisterForm />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </BrowserRouter>

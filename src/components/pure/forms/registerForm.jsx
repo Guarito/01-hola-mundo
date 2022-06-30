@@ -20,7 +20,6 @@ let validationSchema = yup.object().shape({
 const RegisterForm = () => {
     return (
         <>
-            <h1>Register</h1>
             <Formik
                 initialValues={{
                     firstName: "",
