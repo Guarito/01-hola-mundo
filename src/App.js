@@ -22,8 +22,8 @@ function App() {
         <div className="App">
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Layout />}>
-                        <Route index element={<HomePage />} />
+                    <Route element={<Layout />}>
+                        <Route path="/" element={<HomePage />} />
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/tasks" element={<TasksPage />} />

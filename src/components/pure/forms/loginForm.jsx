@@ -1,7 +1,5 @@
-/**
- * Componente que contiene formulario para autenticacion de usuarios
- */
 import { Formik, Form } from "formik";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { MyTextInput } from "./customFields";
 
@@ -11,6 +9,7 @@ let validationSchema = yup.object().shape({
 });
 
 const LoginForm = () => {
+    const navigate = useNavigate();
     return (
         <>
             <Formik
@@ -27,6 +26,7 @@ const LoginForm = () => {
                     //     setSubmitting(false);
                     // }, 400);
                     localStorage.setItem("credentials", JSON.stringify(values));
+                    navigate("/dashboard");
                 }}
             >
                 <Form className="form">
