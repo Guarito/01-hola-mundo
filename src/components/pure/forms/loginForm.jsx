@@ -20,11 +20,12 @@ const LoginForm = () => {
                 }}
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting }) => {
-                    setTimeout(() => {
-                        alert(JSON.stringify(values, null, 2));
-                        setSubmitting(false);
-                    }, 400);
-                    // const { email, password } = values;
+                    // setTimeout(() => {
+                    //     alert(JSON.stringify(values, null, 2));
+                    //     const { email, password } = values;
+
+                    //     setSubmitting(false);
+                    // }, 400);
                     localStorage.setItem("credentials", JSON.stringify(values));
                 }}
             >

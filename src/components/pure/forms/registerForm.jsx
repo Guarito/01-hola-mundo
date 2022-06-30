@@ -31,10 +31,11 @@ const RegisterForm = () => {
                 onSubmit={(values, { setSubmitting }) => {
                     setTimeout(() => {
                         alert(JSON.stringify(values, null, 2));
+                        const { firstName, lastName, email, password } = values;
+                        // let user = new User(firstName, lastName, email, password);
                         setSubmitting(false);
                     }, 400);
-                    const { firstName, lastName, email, password } = values;
-                    let user = new User(firstName, lastName, email, password);
+                    //
                 }}
             >
                 <Form className="form">

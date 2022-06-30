@@ -4,6 +4,7 @@ import "./App.scss";
 import RegisterForm from "./components/pure/forms/registerForm";
 import NotFoundPage from "./pages/404/NotFoundPage";
 import LoginPage from "./pages/auth/LoginPage";
+import Dashboard from "./pages/dashboard/DashboardPage";
 import HomePage from "./pages/home/HomePage";
 import TaskDetailsPage from "./pages/tasks/TaskDetailsPage";
 import TasksPage from "./pages/tasks/TasksPage";
@@ -20,6 +21,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<HomePage />} />
+                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/tasks" element={<TasksPage />} />
                 <Route path="/tasks/:taskId" element={<TaskDetailsPage />} />
                 <Route path="/auth/login" element={<LoginPage />} />
