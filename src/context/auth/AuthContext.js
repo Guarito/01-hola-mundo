@@ -5,17 +5,21 @@ import { authReducer } from "./authReducer";
 export const AuthContext = createContext();
 
 const init = () => {
-    return (
-        JSON.parse(localStorage.getItem("credentials")) || {
+    try {
+        const userInfo = JSON.parse(localStorage.getItem("credentials")) || {
             isLogged: false,
-        }
-    );
+        };
+        console.log("userInfo", userInfo);
+        return userInfo;
+    } catch (error) {
+        console.log("Error:", error);
+    }
 };
 
 export const AuthContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(authReducer, {}, init);
+    const [user, dispatch] = useReducer(authReducer, {}, init);
     return (
-        <AuthContext.Provider value={{ state, dispatch }}>
+        <AuthContext.Provider value={{ user, dispatch }}>
             {children}
         </AuthContext.Provider>
     );

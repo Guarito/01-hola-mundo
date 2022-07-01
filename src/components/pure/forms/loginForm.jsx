@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { AuthContext } from "../../../context/auth/AuthContext";
-import { types } from "../../../context/auth/types";
+import { types } from "../../../context/types";
 
 import { MyTextInput } from "./customFields";
 
@@ -30,13 +30,17 @@ const LoginForm = () => {
 
                     //     setSubmitting(false);
                     // }, 400);
-                    localStorage.setItem("credentials", values);
+
                     dispatch({
                         type: types.login,
                         payload: {
                             email: values.email,
                         },
                     });
+                    localStorage.setItem(
+                        "credentials",
+                        JSON.stringify({ email: values.email, isLogged: true })
+                    );
                     navigate("/dashboard");
                 }}
             >
