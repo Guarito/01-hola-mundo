@@ -11,7 +11,6 @@ import TaskDetailsPage from "../pages/tasks/TaskDetailsPage";
 import TasksPage from "../pages/tasks/TasksPage";
 
 const AppRouter = () => {
-    const isLogged = !!localStorage.getItem("credentials");
     return (
         <BrowserRouter>
             <Routes>
@@ -24,16 +23,7 @@ const AppRouter = () => {
                         path="/tasks/:taskId"
                         element={<TaskDetailsPage />}
                     />
-                    <Route
-                        path="/auth/login"
-                        element={
-                            isLogged ? (
-                                <Navigate to="/" replace />
-                            ) : (
-                                <LoginPage />
-                            )
-                        }
-                    />
+                    <Route path="/auth/login" element={<LoginPage />} />
                     <Route path="/auth/register" element={<RegisterForm />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Route>

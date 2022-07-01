@@ -1,6 +1,10 @@
 import { Formik, Form } from "formik";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
+import { AuthContext } from "../../../context/auth/AuthContext";
+import { types } from "../../../context/auth/types";
+
 import { MyTextInput } from "./customFields";
 
 let validationSchema = yup.object().shape({
@@ -10,6 +14,7 @@ let validationSchema = yup.object().shape({
 
 const LoginForm = () => {
     const navigate = useNavigate();
+    const { dispatch } = useContext(AuthContext);
     return (
         <>
             <Formik
@@ -25,7 +30,13 @@ const LoginForm = () => {
 
                     //     setSubmitting(false);
                     // }, 400);
-                    localStorage.setItem("credentials", JSON.stringify(values));
+                    localStorage.setItem("credentials", values);
+                    dispatch({
+                        type: types.login,
+                        payload: {
+                            email: values.email,
+                        },
+                    });
                     navigate("/dashboard");
                 }}
             >
