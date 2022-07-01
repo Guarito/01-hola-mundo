@@ -21,7 +21,7 @@ const validationSchema = yup.object().shape({
 
 const TaskForm = ({ addTask }) => {
     return (
-        <>
+        <div className="col-4">
             <h1>Add task</h1>
             <Formik
                 initialValues={initialTask}
@@ -59,7 +59,7 @@ const TaskForm = ({ addTask }) => {
                     </button>
                 </Form>
             </Formik>
-        </>
+        </div>
     );
 };
 

@@ -3,6 +3,7 @@ import { Task } from "../../models/tasks.class";
 import TaskForm from "../pure/forms/taskForm";
 import TasksTable from "./tasksTable";
 import NoTasks from "../pure/noTasks";
+import { Stack } from "react-bootstrap";
 
 const TaskList = (props) => {
     // const defaultTask = new Task(
@@ -19,7 +20,6 @@ const TaskList = (props) => {
     //Control ciclo de vida del componente
     useEffect(() => {
         // console.log("Montura de listado de tareas");
-
         setLoading(false);
     }, [tasks]);
 
@@ -57,12 +57,11 @@ const TaskList = (props) => {
         setTasks(tempTasks);
     };
     return (
-        <div className="col-12">
-            <div className="card">
+        <Stack direction="horizontal" gap={3}>
+            <TaskForm addTask={addTask} />
+            <div className="card w-100">
                 <div className="card-header p-3 text-dark">
                     <h5 className="display-6">Your tasks:</h5>
-
-                    <TaskForm addTask={addTask} />
                 </div>
                 {/** Card body */}
                 <div
@@ -81,7 +80,7 @@ const TaskList = (props) => {
                     )}
                 </div>
             </div>
-        </div>
+        </Stack>
     );
 };
 
