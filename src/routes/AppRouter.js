@@ -1,10 +1,10 @@
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 
 import Layout from "../components/layouts/layout";
-import RegisterForm from "../components/pure/forms/registerForm";
 import NotFoundPage from "../pages/404/NotFoundPage";
 import AboutPage from "../pages/about-faqs/AboutPage";
 import LoginPage from "../pages/auth/LoginPage";
+import RegisterPage from "../pages/auth/RegisterPage";
 import Dashboard from "../pages/dashboard/DashboardPage";
 import HomePage from "../pages/home/HomePage";
 import TaskDetailsPage from "../pages/tasks/TaskDetailsPage";
@@ -24,7 +24,7 @@ const AppRouter = () => {
                         element={<TaskDetailsPage />}
                     />
                     <Route path="/auth/login" element={<LoginPage />} />
-                    <Route path="/auth/register" element={<RegisterForm />} />
+                    <Route path="/auth/register" element={<RegisterPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Route>
             </Routes>
