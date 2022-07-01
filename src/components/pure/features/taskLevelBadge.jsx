@@ -1,26 +1,15 @@
+import { Badge } from "react-bootstrap";
 import { LEVELS } from "../../../models/levels.enun";
 
 const TaskLevelBadge = ({ level }) => {
     switch (level) {
         case LEVELS.NORMAL:
-            return (
-                <h6 className="mb-0">
-                    <span className="badge text-bg-info">{level}</span>
-                </h6>
-            );
+            return <Badge bg="success">{level}</Badge>;
 
         case LEVELS.HIGH:
-            return (
-                <h6 className="mb-0">
-                    <span className="badge text-bg-warning">{level}</span>
-                </h6>
-            );
+            return <Badge bg="warning">{level}</Badge>;
         case LEVELS.BLOCKING:
-            return (
-                <h6 className="mb-0">
-                    <span className="badge text-bg-danger">{level}</span>
-                </h6>
-            );
+            return <Badge bg="danger">{level}</Badge>;
         default:
             break;
     }
