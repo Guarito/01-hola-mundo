@@ -9,7 +9,7 @@ const init = () => {
         const userInfo = JSON.parse(localStorage.getItem("credentials")) || {
             isLogged: false,
         };
-        console.log("userInfo", userInfo);
+        // console.log("userInfo", userInfo);
         return userInfo;
     } catch (error) {
         console.log("Error:", error);
