@@ -14,13 +14,16 @@ const TaskList = (props) => {
     // );
 
     //State del componente para manejar el listado de tareas
-    const [tasks, setTasks] = useState([]);
+    const initialTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    console.log(initialTasks);
+    const [tasks, setTasks] = useState(initialTasks);
     const [loading, setLoading] = useState(true);
 
     //Control ciclo de vida del componente
     useEffect(() => {
         // console.log("Montura de listado de tareas");
         setLoading(false);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
     }, [tasks]);
 
     /**

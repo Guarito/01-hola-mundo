@@ -33,7 +33,7 @@ const TaskForm = ({ addTask }) => {
                             id: uuidv4(),
                         });
                         setSubmitting(false);
-                    }, 400);
+                    }, 0);
                 }}
             >
                 <Form className="form">
