@@ -1,0 +1,5 @@
+export const TODO_TYPES = {
+    ADD_TODO: "ADD TODO",
+    REMOVE_TODO: "REMOVE TODO",
+    COMPLETE_TODO: "COMPLETE TODO",
+};

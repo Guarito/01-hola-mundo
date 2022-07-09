@@ -13,10 +13,15 @@ const TaskList = (props) => {
     //     LEVELS.NORMAL
     // );
 
-    //State del componente para manejar el listado de tareas
-    const initialTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    console.log(initialTasks);
-    const [tasks, setTasks] = useState(initialTasks);
+    //State del componente para manejar el listado de tarea
+    const tasksFromLocalStorage = JSON.parse(localStorage.getItem("tasks"));
+    let list = [];
+    tasksFromLocalStorage.forEach((item) => {
+        const { id, name, description, completed, level } = item;
+        list.push(new Task(id, name, description, completed, level));
+    });
+
+    const [tasks, setTasks] = useState(list);
     const [loading, setLoading] = useState(true);
 
     //Control ciclo de vida del componente
