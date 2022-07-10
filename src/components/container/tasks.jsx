@@ -19,16 +19,16 @@ const TaskList = (props) => {
     // let list = [];
 
     //probando
-    let list2 = new Tasks();
-    tasksFromLocalStorage.forEach((task) => list2.newTask(task));
-    console.log(list2.allTasks);
+    let tasksList = new Tasks();
+    tasksFromLocalStorage.forEach((task) => tasksList.newTask(task));
+    console.log(tasksList.allTasks);
 
     // tasksFromLocalStorage.forEach((item) => {
     //     const { id, name, description, completed, level } = item;
     //     list.push(new Task(id, name, description, completed, level));
     // });
 
-    const [tasks, setTasks] = useState(list2.allTasks);
+    const [tasks, setTasks] = useState(tasksList.allTasks);
     const [loading, setLoading] = useState(true);
 
     //Control ciclo de vida del componente
@@ -43,7 +43,6 @@ const TaskList = (props) => {
      */
     const addTask = (values) => {
         const { id, title, description, completed, level } = values;
-
         setTasks([
             ...tasks,
             new Task(id, title, description, completed, level),

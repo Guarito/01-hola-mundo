@@ -5,14 +5,14 @@ import "../../styles/task.scss";
 import TaskLevelBadge from "./features/taskLevelBadge";
 
 const TaskComponent = ({ task, changeStatus, deleteTask }) => {
-    const { id, name, description, level, completed } = task;
+    const { id, title, description, level, completed } = task;
 
     useEffect(() => {}, [task]);
 
     return (
         <tr className={completed ? "completed" : null}>
             <th>
-                <span>{name}</span>
+                <span>{title}</span>
             </th>
             <th>
                 <span>{description}</span>
