@@ -17,3 +17,16 @@ export class Task {
     }
 }
 
+export class Tasks {
+    constructor() {
+        this.tasks = [];
+    }
+    newTask(task) {
+        const { id, name, description, completed, level } = task;
+        let todo = new Task(id, name, description, completed, level);
+        this.tasks.push(todo);
+    }
+    get allTasks() {
+        return this.tasks;
+    }
+}

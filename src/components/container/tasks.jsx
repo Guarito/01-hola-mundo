@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Task } from "../../models/tasks.class";
+import { Task, Tasks } from "../../models/tasks.class";
 import TaskForm from "../pure/forms/taskForm";
 import TasksTable from "./tasksTable";
 import NoTasks from "../pure/noTasks";
@@ -14,14 +14,21 @@ const TaskList = (props) => {
     // );
 
     //State del componente para manejar el listado de tarea
-    const tasksFromLocalStorage = JSON.parse(localStorage.getItem("tasks"));
-    let list = [];
-    tasksFromLocalStorage.forEach((item) => {
-        const { id, name, description, completed, level } = item;
-        list.push(new Task(id, name, description, completed, level));
-    });
+    const tasksFromLocalStorage =
+        JSON.parse(localStorage.getItem("tasks")) || [];
+    // let list = [];
 
-    const [tasks, setTasks] = useState(list);
+    //probando
+    let list2 = new Tasks();
+    tasksFromLocalStorage.forEach((task) => list2.newTask(task));
+    console.log(list2.allTasks);
+
+    // tasksFromLocalStorage.forEach((item) => {
+    //     const { id, name, description, completed, level } = item;
+    //     list.push(new Task(id, name, description, completed, level));
+    // });
+
+    const [tasks, setTasks] = useState(list2.allTasks);
     const [loading, setLoading] = useState(true);
 
     //Control ciclo de vida del componente
