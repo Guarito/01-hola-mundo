@@ -4,14 +4,11 @@ import TaskForm from "../pure/forms/taskForm";
 import TasksTable from "./tasksTable";
 import NoTasks from "../pure/noTasks";
 import { Stack } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../../store/actions/todoActions";
 
 const TaskList = (props) => {
-    // const defaultTask = new Task(
-    //     "Example title",
-    //     "Default description",
-    //     false,
-    //     LEVELS.NORMAL
-    // );
+    const dispatch = useDispatch();
 
     //State del componente para manejar el listado de tarea
     const tasksFromLocalStorage =
@@ -22,11 +19,6 @@ const TaskList = (props) => {
     let tasksList = new Tasks();
     tasksFromLocalStorage.forEach((task) => tasksList.newTask(task));
     console.log(tasksList.allTasks);
-
-    // tasksFromLocalStorage.forEach((item) => {
-    //     const { id, name, description, completed, level } = item;
-    //     list.push(new Task(id, name, description, completed, level));
-    // });
 
     const [tasks, setTasks] = useState(tasksList.allTasks);
     const [loading, setLoading] = useState(true);
@@ -47,6 +39,7 @@ const TaskList = (props) => {
             ...tasks,
             new Task(id, title, description, completed, level),
         ]);
+        dispatch(addTodo(values));
     };
 
     /**

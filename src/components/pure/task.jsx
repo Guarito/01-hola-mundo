@@ -1,13 +1,10 @@
 import PropTypes from "prop-types";
-import { useEffect } from "react";
 import { Task } from "../../models/tasks.class";
 import "../../styles/task.scss";
 import TaskLevelBadge from "./features/taskLevelBadge";
 
 const TaskComponent = ({ task, changeStatus, deleteTask }) => {
     const { id, title, description, level, completed } = task;
-
-    useEffect(() => {}, [task]);
 
     return (
         <tr className={completed ? "completed" : null}>
